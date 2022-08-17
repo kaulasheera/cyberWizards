@@ -14,37 +14,37 @@ public class Synthacks
     void CreateTable(String[][] table)
     {
         f = new JFrame();
-        f.setTitle("calender");
-        String data[][] = new String[table[0].length][table.length];
-        for(int r = 0; r<table[0].length; r++)//2
+        f.setTitle("Calender");
+        String[][] data = new String[table[0].length][table.length];
+        for(int r = 0; r<table[0].length; r++)
         {
-            for(int c = 0; c<table.length; c++){//5
-                if(c==0)
-                {
-                    if(table[c][r].equals("a"))
-                        data[r][c]= "available";
-                    else
-                        data[r][c]= "unavailable";
-                    continue;
-                }
-                else if(c==1)
-                {
-                    //data[r][c]=table[c][r].substring(6,8)+"/"+table[c][r].substring(4,6)+"/"+table[c][r].substring(0,4);
-                    data[r][c]=table[c][r];
-                    continue;
-                }
-                else if((c==2)||(c==3))
-                {
-                    data[r][c]=table[c][r].substring(0,2)+":"+table[c][r].substring(3,5);
-                    continue;
-                }
-                else
+            for(int c = 0; c<table.length; c++)
+            {
+                // if(c==0)
+                // {
+                    // if(table[c][r].equals("a"))
+                    // {
+                        // data[r][c]= "available";
+                    // }
+                    // else
+                    // {
+                        // data[r][c]= "unavailable";
+                    // }
+                // }
+                // else if(c==1)
+                // {
+                    // data[r][c]=table[c][r].substring(6,8)+"/"+table[c][r].substring(4,6)+"/"+table[c][r].substring(0,4);
+                // }
+                // else if((c==2)||(c==3))
+                // {
+                    // data[r][c]=table[c][r].substring(0,2)+":"+table[c][r].substring(3,5);
+                // }
+                // else
                     data[r][c]=table[c][r];
             }
         }
 
-        String[] columnNames = { "availibility","date", "start(24hr)",
-"end(24hr)" , "name"};
+        String[] columnNames = { "Availibility","Date", "Start(24hr)","End(24hr)", "Event Name"};
         j = new JTable(data, columnNames);
         j.setBounds(30, 40, 200, 300);
         JScrollPane sp = new JScrollPane(j);
@@ -55,8 +55,7 @@ public class Synthacks
 
     String createIcsEvent(String nameOfEvent, String startTime, String endTime)
     {
-        String icsEvent =
-"\nBEGIN:VEVENT\nSUMMARY:"+nameOfEvent+"\nDTSTART;TZID=Asia/Kolkata:"+startTime+"\nDTEND;TZID=Asia/Kolkata:"+endTime+"\nEND:VEVENT\n";
+        String icsEvent ="\nBEGIN:VEVENT\nSUMMARY:"+nameOfEvent+"\nDTSTART;TZID=Asia/Kolkata:"+startTime+"\nDTEND;TZID=Asia/Kolkata:"+endTime+"\nEND:VEVENT\n";
         return icsEvent;
     }
 
@@ -167,6 +166,7 @@ public class Synthacks
                         ind++;
                     }
                 }
+                CreateTable(timeslots);
             }
 
             //check for loop continuation
